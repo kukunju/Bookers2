@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
-  get 'users/edit'
-  get 'users/show'
-  get 'users/index'
-  get 'books/edit'
-  get 'books/show'
-  get 'books/index'
-  get 'homes/home'
-  get 'homes/about'
+  root to: "homes#home"
   devise_for :users
+  get 'homes/about'
+
+
+
+
+  resources :books, only: [:edit, :show , :index , :create, :destroy]
+  resources :users, only: [:edit, :show , :index ,:update]
+
+
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
