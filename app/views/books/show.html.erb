@@ -1,2 +1,46 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<div class="container">
+  <%= render 'users/message',book: @book %>
+
+  <div class="row">
+    <%= render 'users/user_info', user: @user, book: @book %>
+
+
+  <div class="col-9">
+    <h1>Book detail</h1>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <td>image</td>
+          <td>Title</td>
+          <td>Body</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </thead>
+     <tbody>
+        <tr>
+          <td><a href="<%= user_path(@user.id) %>"><%= image_tag @user.get_profile_image(100,100) %><br>
+          <%= @user.name %></a></td>
+          <td><a href="<%= book_path(@books.id) %>"><%= @books.title %></a></td>
+          <td><%= @books.body %></td>
+
+          <td ><% if @user == current_user %><a class="btn btn-success" href="<%= edit_book_path(@books.id) %>" role="button">
+            編集
+            </a><% end %></td>
+
+          <td>
+            <% if @user == current_user %>
+              <%= link_to book_path(@books.id), method: :delete, class: "btn btn-danger", role: "button", data: { confirm: "本当に削除しますか？" } do %>
+              削除
+              <% end %>
+            <% end %>
+          </td>
+
+
+        </tr>
+     </tbody>
+    </table>
+  </div>
+  </div>
+
+</div>
