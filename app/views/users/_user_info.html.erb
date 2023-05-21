@@ -1,4 +1,4 @@
-<div class="col-3">
+<div class="col-md-3">
     <div class="row">
     <h1 class="mx-auto">
       User info
@@ -22,16 +22,14 @@
   </table>
 
   <div class="col">
-    <% if @user == current_user %>
     <a class="btn btn-outline-primary mx-auto col mb-2" href= "<%= edit_user_path(user.id) %>" role="button">
       <i class="fas fa-user-cog"></i>
     </a>
-    <% end %>
   </div>
 
 
   <div>
-    <h2>New Book</h2>
+    <h2>New book</h2>
 
    <%= form_with model: book, url:'/books', method: :post  do |f| %>
 

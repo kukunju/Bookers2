@@ -8,8 +8,8 @@ class BooksController < ApplicationController
     redirect_to book_path(@book.id)
   else
     @user = User.find(current_user.id)
-    @books = Book.where(user_id: @user.id)
-    render "users/show"
+    @books = Book.all
+    render :index
   end
 end
 
@@ -17,7 +17,7 @@ end
   def edit
     @book=Book.find(params[:id])
     unless @book.user_id == current_user.id
-      redirect_to user_path(current_user.id)
+      redirect_to books_path
     end
   end
 
@@ -50,7 +50,7 @@ end
     book = Book.find(params[:id])
     book.delete
     flash[:notice] = "Book was successfully destroy."
-    redirect_to user_path(current_user.id)
+    redirect_to "/books"
   end
 
 
