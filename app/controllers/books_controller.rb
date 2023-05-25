@@ -25,6 +25,7 @@ end
     @book = Book.new
     @books = Book.find(params[:id])
     @user = @books.user
+    @comment = Comment.new
   end
 
   def index
