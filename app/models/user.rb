@@ -14,16 +14,16 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  #（親）する人follower→中間relationship→される人followerd　　フォローするUser側から見たされるUserとの関係
+  #（親）する人follower→中間relationship→される人followed　　フォローするUser側から見たされるUserとの関係
   has_many :follower_relationships,class_name:"Relationship", foreign_key: :follower_id, dependent: :destroy
   #中間を使って「followed」モデルのUser（された側）を集めることを「followers」と定義する 自分がフォローした人を集める
-  has_many :followers, through: :follower_relationships, source: :followed
+  has_many :follows, through: :follower_relationships, source: :followed
 
 
-  #（親）される人followerd→中間relationship→する人followerd　　フォローされるUser側から見たするUserとの関係
+  #（親）される人followerd→中間relationship→する人follower　　フォローされるUser側から見たするUserとの関係
   has_many :followed_relationships,class_name:"Relationship", foreign_key: :followed_id, dependent: :destroy
-  #中間を使って「follower」モデルのUser（した側）を集めることを「followerd」と定義する　自分をフォローしてる人を集める
-  has_many :followeds, through: :followed_relationships, source: :follower
+  #中間を使って「follower」モデルのUser（した側）を集めることを「followerds」と定義する　自分をフォローしてる人を集める
+  has_many :followers, through: :followed_relationships, source: :follower
 
 
 

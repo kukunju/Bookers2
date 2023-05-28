@@ -18,6 +18,18 @@ class UsersController < ApplicationController
     @users = User.all
     @book = Book.new
   end
+  
+  #followした人一覧
+  def follows
+    
+  end
+
+  #followされた人一覧
+  def followers
+    
+  end
+  
+  
 
   def update
     @user=User.find(params[:id])

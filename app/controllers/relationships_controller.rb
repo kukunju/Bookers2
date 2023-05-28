@@ -1,15 +1,17 @@
 class RelationshipsController < ApplicationController
 
-  #followした人一覧
-  def follows
+
+  def create
+    follow = current_user.follower_relationships.build(followed_id: params[:user_id])
+    follow.save
+    redirect_to request.referer
+  end
+
+  def destroy
+    follow = current_user.follower_relationships.find_by(followed_id: params[:user_id])
+    follow.destroy
+    redirect_to request.referer
   end
 
 
-  #followされた人一覧
-  def followers
-  end
-  
-  
-  
-  
 end
