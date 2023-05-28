@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root to: "homes#home"
   devise_for :users
   get '/home/about', to: 'homes#about'
@@ -10,7 +11,12 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
-  resources :users, only: [:edit, :show , :index ,:update]
+  
+  resources :users, only: [:edit, :show , :index ,:update] do
+    resources :relations, only: [:create, :destroy]
+    get :follows, on: :member
+    get :followers, on: :member
+  end
 
 
 

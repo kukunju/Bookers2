@@ -14,12 +14,29 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  #（親）する人follower→中間relationship→される人followerd　　フォローするUser側から見たされるUserとの関係
+  has_many :follower_relationships,class_name:"Relationship", foreign_key: :follower_id, dependent: :destroy
+  #中間を使って「followed」モデルのUser（された側）を集めることを「followers」と定義する 自分がフォローした人を集める
+  has_many :followers, through: :follower_relationships, source: :followed
+
+
+  #（親）される人followerd→中間relationship→する人followerd　　フォローされるUser側から見たするUserとの関係
+  has_many :followed_relationships,class_name:"Relationship", foreign_key: :followed_id, dependent: :destroy
+  #中間を使って「follower」モデルのUser（した側）を集めることを「followerd」と定義する　自分をフォローしてる人を集める
+  has_many :followeds, through: :followed_relationships, source: :follower
+
+
+
   def get_profile_image(width, height)
    unless profile_image.attached?
     file_path = Rails.root.join('app/assets/images/no_profile_image.jpg')
     profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
    end
     profile_image.variant(resize_to_limit: [width, height]).processed
+  end
+
+  def followed_by?(user)
+   followed_relationships.find_by(follower_id: user.id).present?
   end
 
 end
