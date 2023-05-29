@@ -18,18 +18,24 @@ class UsersController < ApplicationController
     @users = User.all
     @book = Book.new
   end
-  
+
   #followした人一覧
   def follows
-    
+    @user = User.find(current_user.id)
+    user = User.find(params[:id])
+    @users = user.follows
+    @book = Book.new
   end
 
   #followされた人一覧
   def followers
-    
+    @user = User.find(current_user.id)
+    user = User.find(params[:id])
+    @users = user.followers
+    @book = Book.new
   end
-  
-  
+
+
 
   def update
     @user=User.find(params[:id])

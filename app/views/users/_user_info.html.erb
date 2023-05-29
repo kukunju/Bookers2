@@ -19,11 +19,11 @@
         <td><%= user.introduction %></td>
       </tr>
       <tr>
-        <td>follows</td>
+        <td><a href="<%= follows_user_path(@user.id) %>">follows</a></td>
         <td><%= @user.follows.count %></td>
       </tr>
       <tr>
-        <td>followers</td>
+        <td><a href="<%= followers_user_path(@user.id) %>">followers</a></td>
         <td><%= @user.followers.count %></td>
       </tr>
       <% if @user != current_user %>
