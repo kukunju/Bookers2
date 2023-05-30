@@ -39,4 +39,18 @@ class User < ApplicationRecord
    followed_relationships.find_by(follower_id: user.id).present?
   end
 
+  def self.looks(search,werd)
+   if search =="perfect_match"
+    @users = User.where("name LIKE?","#{werd}")
+   elsif search == "forward_match"
+    @users = User.where("name LIKE?","%#{werd}")
+   elsif search == "backword_match"
+    @users = User.where("name LIKE?","#{werd}%")
+   elsif search == "partial_match"
+    @users = User.where("name LIKE?","%#{werd}%")
+  else
+    @users = User.all
+  end
+ end
+
 end
