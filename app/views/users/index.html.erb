@@ -26,11 +26,11 @@
            <td>
              <% if user !=current_user %>
             <% if user.followed_by?(current_user) %>
-            　<%= link_to user_relationship_path(user_id: user.id, id: current_user.id), method: :delete do %>
+            　<%= link_to user_relationship_path(user_id: user.id, id: current_user.id),data: { disable_with: '送信中' }, method: :delete do %>
                 <button type="button" class="btn btn-success">フォローを外す</button>
               <% end %>
             <% else %>
-              <%= link_to user_relationships_path(user.id), method: :post do %>
+              <%= link_to user_relationships_path(user.id),data: { disable_with: '送信中' }, method: :post do %>
               　<button type="button" class="btn btn-success">フォローする</button>
               <% end %>
             <% end %>

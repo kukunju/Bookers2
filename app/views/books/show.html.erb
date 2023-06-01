@@ -89,7 +89,7 @@
 
   <div class="form-group">
    <%= f.text_field :comment, class: "form-control" %>
-   <button type="submit" class="btn btn-success">送信</button>
+   <%= f.submit "送信", class: "btn btn-success",data: { disable_with: '送信中' } %>
    <% end %>
   </div>
 
