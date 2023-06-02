@@ -24,16 +24,8 @@
           <td><a href="<%= user_path(book.user_id) %>"><%= image_tag book.user.get_profile_image(100,100) %><br></a></td>
           <td><a href="<%= book_path(book.id) %>"><%= book.title %></a></td>
           <td><%= book.body %></td>
-          <td>
-            <% if book.favorited_by?(current_user) %>
-            　<%= link_to book_favorites_path(book), method: :delete do %>
-              ♥<%= book.favorites.count %>いいね
-              <% end %>
-            <% else %>
-              <%= link_to book_favorites_path(book), method: :post do %>
-              ♡<%= book.favorites.count %> いいね
-              <% end %>
-            <% end %>
+          <td id="favorite-btn-<%= book.id %>">
+            <%= render 'favorites/favorite-btn', book: book %>
           </td>
           <td><%= book.comments.count %>コメント</td>
         </tr>
@@ -42,5 +34,4 @@
     </table>
   </div>
   </div>
-
 </div>
