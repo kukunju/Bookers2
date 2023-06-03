@@ -5,7 +5,9 @@
 <p>you can share and exchange your opinions , inpressions , and emotions</p>
 <p>about various books!</p>
 
-
+<div class="row">
+  <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-outline-secondary mx-auto btn-lg col mb-2", method: :post %>
+</div>
 <div class="row">
   <div class="col">
     <a class="btn btn-outline-primary mx-auto btn-lg col mb-2" href="/users/sign_in" role="button">Log in</a>
