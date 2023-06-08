@@ -15,6 +15,22 @@
    <%= f.text_area :body, class: "form-control" %>
   </div>
 
+  <div id="book-star-<%= @book.id %>"></div>
+  <script>
+    $(document).on("turbolinks:load", function() {
+      $('#book-star-<%= @book.id %>').empty();
+      let elem = document.querySelector('#book-star-<%= @book.id %>');
+      let opt = {
+        size     : 40,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        readOnly: true,
+        score: '<%= @book.star %>'
+      };
+      raty(elem,opt);
+    });
+  </script>
+
    <button type="submit" class="btn btn-success">Update Book</button>
 
 <% end %>

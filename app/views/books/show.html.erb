@@ -27,6 +27,25 @@
             <%= render 'favorites/favorite-btn', book: @books %>
           </td>
 
+          <td><%= @books.comments.count %>コメント</td>
+          <td>
+            <div id="book-star-<%= @books.id %>"></div>
+            <script>
+              $(document).on("turbolinks:load", function() {
+                $('#book-star-<%= @books.id %>').empty();
+                let elem = document.querySelector('#book-star-<%= @books.id %>');
+                let opt = {
+                  size     : 40,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  readOnly: true,
+                  score: '<%= @books.star %>'
+                };
+                raty(elem,opt);
+              });
+            </script>
+          </td>
+
           <% if @user == current_user %>
           <td >
             <a class="btn btn-success" href="<%= edit_book_path(@books.id) %>" role="button">
