@@ -7,6 +7,11 @@
 
 
   <div class="col-md-8 offset-md-1">
+    <p>
+      <%= link_to '新しい順', books_path(latest: "true") %>
+      |<%= link_to '古い順', books_path(old: "true") %>
+      |<%= link_to '星が多い順', books_path(star_desc: "true") %>
+    </p>
     <h1>Books</h1>
     <table class="table table-hover">
       <thead>

@@ -29,9 +29,18 @@ end
   end
 
   def index
+    if params[:latest]
+      @books = Book.latest
+    elsif params[:old]
+      @books = Book.old
+    elsif params[:star_desc]
+      @books = Book.star_desc
+    else
+      @books = Book.all
+    end
+
     @user = User.find(current_user.id)
     @book = Book.new
-    @books = Book.all
   end
 
 
