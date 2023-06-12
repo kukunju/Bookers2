@@ -80,6 +80,13 @@
           <%= f.submit "検索",:disable_with=>"送信中", class: "btn btn-success py-0" %>
         <% end %>
        </div>
+       <div class="mx-auto my-3" style="width: 500px;">
+        <%= form_with url: search_path, local: true, method: :get  do |f| %>
+          <%= f.hidden_field :range, value: 'Tag' %>
+          <%= f.text_field :werd %>
+          <%= f.submit "タグ検索",:disable_with=>"送信中", class: "btn btn-success py-0" %>
+        <% end %>
+       </div>
      <% end %>
 
     <main>

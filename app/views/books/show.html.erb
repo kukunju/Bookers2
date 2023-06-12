@@ -13,6 +13,7 @@
           <td></td>
           <td>Title</td>
           <td>Body</td>
+          <td>Tag</td>
         </tr>
       </thead>
      <tbody>
@@ -21,6 +22,11 @@
           <%= @user.name %></a></td>
           <td><a href="<%= book_path(@books.id) %>"><%= @books.title %></a></td>
           <td><%= @books.body %></td>
+          <td>
+            <%= link_to search_path(range: "Tag", werd: @books.tag ), method: :get do %>
+             <%= @books.tag %>
+            <% end %>
+          </td>
 
 
           <td id="favorite-btn-<%= @books.id %>">

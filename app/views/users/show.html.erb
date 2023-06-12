@@ -6,25 +6,12 @@
 
 
   <div class="col-md-8 offset-md-1">
-    <h1>Books</h1>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <td></td>
-          <td>Title</td>
-          <td>Body</td>
-        </tr>
-      </thead>
-     <tbody>
-        <% @books.each do |book| %>
-        <tr>
-          <td><a href="<%= user_path(@user.id) %>"><%= image_tag @user.get_profile_image(100,100) %></a></td>
-          <td><a href="<%= book_path(book.id) %>"><%= book.title %></a></td>
-          <td><%= book.body %></td>
-        </tr>
-        <% end %>
-     </tbody>
-    </table>
+    <p>
+     <%= link_to '新しい順', user_path(latest: "true") %>
+     |<%= link_to '古い順', user_path(old: "true") %>
+     |<%= link_to '星が多い順', user_path(star_desc: "true") %>
+    </p>
+    <%= render 'books/books_index', books: @books %>
   </div>
   </div>
 

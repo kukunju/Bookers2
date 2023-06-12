@@ -17,7 +17,6 @@
 
   <div id="book-star-<%= @book.id %>"></div>
   <script>
-    $(document).on("turbolinks:load", function() {
       $('#book-star-<%= @book.id %>').empty();
       let elem = document.querySelector('#book-star-<%= @book.id %>');
       let opt = {
@@ -28,7 +27,6 @@
         score: '<%= @book.star %>'
       };
       raty(elem,opt);
-    });
   </script>
 
    <button type="submit" class="btn btn-success">Update Book</button>

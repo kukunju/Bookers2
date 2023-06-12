@@ -11,8 +11,19 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @books = Book.where(user_id: @user.id)
     @book = Book.new
+
+    if params[:latest]
+      @books = Book.latest.where(user_id: @user.id)
+    elsif params[:old]
+      @books = Book.old.where(user_id: @user.id)
+    elsif params[:star_desc]
+      @books = Book.star_desc.where(user_id: @user.id)
+    else
+      @books = Book.where(user_id: @user.id)
+    end
+
+
   end
 
   def index
